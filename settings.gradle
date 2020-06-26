@@ -1,0 +1,6 @@
+rootProject.name='AIDL'
+include ':app'
+include ':aidlclient'
+include ':binderservice'
+include ':binderclient'
+include ':binderlibrary'
