@@ -1,10 +1,9 @@
-// IMyAidlInterface.aidl
-package com.donfyy.aidlService;
+// IPersonAidlInterface.aidl
+package com.donfyy.binderlibrary;
 
 // Declare any non-default types here with import statements
 parcelable Person;
-
-interface IMyAidlInterface {
+interface IPersonAidlInterface {
     void addPerson(in Person person);
     List<Person> getPersonList();
 }

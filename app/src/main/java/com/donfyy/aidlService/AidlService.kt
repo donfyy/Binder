@@ -4,7 +4,8 @@ import android.app.Service
 import android.content.Intent
 import android.os.IBinder
 import android.util.Log
-
+import com.donfyy.binderlibrary.IPersonAidlInterface
+import com.donfyy.binderlibrary.Person
 
 class AidlService : Service() {
     private val personList = ArrayList<Person>()
@@ -14,7 +15,7 @@ class AidlService : Service() {
     }
     override fun onBind(intent: Intent?): IBinder? {
         Log.e("AidlService", "onBind: success")
-        return object : IMyAidlInterface.Stub() {
+        return object : IPersonAidlInterface.Stub() {
             override fun addPerson(person: Person?) {
                 if (person != null) {
                     personList.add(person)

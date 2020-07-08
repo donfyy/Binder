@@ -9,11 +9,11 @@ import android.os.Bundle
 import android.os.IBinder
 import android.util.Log
 import android.view.View
-import com.donfyy.aidlService.IMyAidlInterface
-import com.donfyy.aidlService.Person
+import com.donfyy.binderlibrary.IPersonAidlInterface
+import com.donfyy.binderlibrary.Person
 
 class MainActivity : AppCompatActivity() {
-    var iMyAidlInterface: IMyAidlInterface? = null
+    var iMyAidlInterface: IPersonAidlInterface? = null
     var service: IBinder? = null
 
     val deathRecipient = IBinder.DeathRecipient { Log.e("AidlClient", "binderDied") }
@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
 
         override fun onServiceConnected(name: ComponentName?, service: IBinder?) {
             Log.e("AidlClient", "onServiceConnected: success")
-            iMyAidlInterface = IMyAidlInterface.Stub.asInterface(service)
+            iMyAidlInterface = IPersonAidlInterface.Stub.asInterface(service)
 
             service?.linkToDeath(deathRecipient, 0)
             this@MainActivity.service = service
