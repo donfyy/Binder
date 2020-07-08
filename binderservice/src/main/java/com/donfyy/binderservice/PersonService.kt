@@ -15,8 +15,7 @@ class PersonService : Service() {
         Log.e("PersonService", "onCreate: success")
     }
     override fun onBind(intent: Intent?): IBinder? {
-        Log.e("PersonService", "onBind: success")
-        return object : PersonStub() {
+        val binder = object : PersonStub() {
             override fun addPerson(person: Person?) {
                 if (person != null) {
                     list.add(person)
@@ -24,9 +23,13 @@ class PersonService : Service() {
             }
 
             override fun getPersonList(): List<Person>? {
+                Log.e("PersonService", "Current thread:" + Thread.currentThread())
                 return list.toList()
             }
         }
+        Log.e("PersonService", "onBind: success")
+        Log.e("PersonService", "binder: ${binder}")
+        return binder
     }
 
     override fun onDestroy() {
